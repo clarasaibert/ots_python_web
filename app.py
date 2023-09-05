@@ -1,7 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask("meu app")
 
-@app.route('/')  #para definir a rota do cod, posso dar qlqr nome entre aspas simples
-def hello():                  #conjunto de ações
-    return "Hello Word"       #conjunto de ações
+posts = [
+    {
+        "Titulo":"Minha primeira postagem!",
+        "Texto":"teste texto"
+    },
+    {
+        "Titulo" : "Segundo post",
+        "Texto" : "teste texto 2"
+    }
+]
+
+@app.route('/')                      #para definir a rota do codigo, posso dar qlqr nome entre aspas simples
+def exibir_entradas():               #conjunto de ações
+    entradas = posts                 #mock das postagens
+    return render_template('exibir_entradas.html', entradas=entradas)           #conjunto de ações
