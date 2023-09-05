@@ -1,15 +1,15 @@
 from flask import Flask, render_template
 
-app = Flask("meu app")
+app = Flask("Meu app")
 
 posts = [
     {
-        "Titulo":"Minha primeira postagem!",
-        "Texto":"teste texto"
+        "titulo": "Minha primeira postagem!",
+        "texto": "teste texto"
     },
     {
-        "Titulo" : "Segundo post",
-        "Texto" : "teste texto 2"
+        "titulo": "Segundo post",
+        "texto": "teste texto 2"
     }
 ]
 
