@@ -3,7 +3,7 @@ vai ser usado em uma nova pag, com um layout diferente-->
 
 {% block corpo %}
 {% if session.logado %}
-<form action="" method="post" class="ins-entrada">
+<form action="{{ url_for('inserir_entradas')}}" method="post" class="ins-entrada">
       <dl>
         <dt>Título:
              <dd><input type="text" size="30" name="titulo">
@@ -13,21 +13,14 @@ vai ser usado em uma nova pag, com um layout diferente-->
       </dl>
 </form>
   {% endif %}
-  <ul class="entradas">
+
+<ul class="entradas">
   {% for entrada in entradas %}
-    <li><h2>{{ entrada.titulo }}</h2>{{ entrada.texto|safe }}
-  {% else %}
-    <li><em>Inacreditável. Até agora nenhuma entrada.</em>
+    <li>
+      <a href="{{ url_for('exibir_entrada', id=loop.revindex) }}"><h2>{{ entrada.titulo }}</h2></a>
+  {{ entrada.texto|safe | truncate(140)}}
+  </li>{% else %}
+    <li><em>Inacreditável. Até agora nenhuma entrada.</em></li>
   {% endfor %}
-  </ul>
+</ul>
 {% endblock %}
-
-
-<h1>BLOG</h1>
-{% for entrada in entradas%}
-
-<h2>{{ entrada.titulo }}</h2>
-<p>{{ entrada.texto }}</p>
-{% else %}
-<i>Esse blog ainda não possui entradas</i>
-{% endfor %}
